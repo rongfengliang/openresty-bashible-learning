@@ -1,0 +1,8 @@
+version: "3"
+services: 
+  web:
+   image: dalongrong/openresty:bashible
+   volumes: 
+   - "./content/:/opt/content/"
+   ports: 
+   - "80:80"
