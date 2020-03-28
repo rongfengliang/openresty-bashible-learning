@@ -1,7 +1,9 @@
 version: "3"
 services: 
   web:
-   image: dalongrong/openresty:bashible
+   build: 
+    context: .
+    dockerfile: Dockerfile-multi
    volumes: 
    - "./content/:/opt/content/"
    ports: 

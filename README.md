@@ -1,6 +1,6 @@
 # openresty+bashible learning
 
-## Usage
+## Basic Usage
 
 * pull docker image
 
@@ -28,3 +28,16 @@ FOO_OR_BAR=bar
 docker runn -d -p 80:80 $PWD/content/:/opt/content/ dalongrong/openresty:bashible
 ```
 
+## With Multi Stage
+
+* Dockerfile
+
+```code
+FROM dalongrong/openresty:bashible as build
+WORKDIR /opt
+COPY content/ /opt/content
+RUN cd /opt/content/ && bashible t.bash
+
+FROM openresty/openresty:alpine
+COPY --from=build /usr/local/openresty/nginx/html/index.html  /usr/local/openresty/nginx/html/index.html
+```
